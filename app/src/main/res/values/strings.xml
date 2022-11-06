@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DeliYou</string>
+    <string name="slogan">La mejor comida, servida directamente en tu casa</string>
+    <string name="Logo">Logo</string>
+    <string name="signup">SignUp</string>
+    <string name="sing_in">Sing In</string>
+    <string name="sing_up">Sing Up</string>
+</resources>

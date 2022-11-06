@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "669527753649",
+    "project_id": "deliyou-f6bed",
+    "storage_bucket": "deliyou-f6bed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:669527753649:android:616c0c8b581bc6b26e7390",
+        "android_client_info": {
+          "package_name": "pmn.dev.deliyou"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "669527753649-doa4u9gg2is7j1tcrseql1o36ork1kgh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pmn.dev.deliyou",
+            "certificate_hash": "db380fc40ca58cb7ba1fa679e9962e9e7331679f"
+          }
+        },
+        {
+          "client_id": "669527753649-eugd9saau65tcd9ph62ne4fd2dm43n71.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPX-S-CWBVzIzT323BtfsVDjfilJ5_54M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "669527753649-eugd9saau65tcd9ph62ne4fd2dm43n71.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
+
