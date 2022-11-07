@@ -1,9 +1,8 @@
 package pmn.dev.deliyou
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -12,12 +11,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btnSignIn.setOnClickListener(){
-
+        btnLog.setOnClickListener(){
+            val nextpage = Intent( this, LoginActivity::class.java);
+            startActivity(nextpage);
+            finish();
         }
 
-        btnSignUp.setOnClickListener(){
-
+        btnSignIn.setOnClickListener(){
+            val nextpage = Intent( this, RegisterActivity::class.java);
+            startActivity(nextpage);
+            finish();
         }
     }
 }

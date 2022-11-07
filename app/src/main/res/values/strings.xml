@@ -5,4 +5,14 @@
     <string name="signup">SignUp</string>
     <string name="sing_in">Sing In</string>
     <string name="sing_up">Sing Up</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="name">Name</string>
+    <string name="password">Password</string>
+    <string name="telefono">Telefono</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="login">Login</string>
+    <string name="logins">Login</string>
+    <string name="e_mail">E-mail</string>
+    <string name="registrarses">Registrarse</string>
 </resources>
