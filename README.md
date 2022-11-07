@@ -2,7 +2,7 @@
 
 Applicacion creada para la asignatura de PMN, programada en kotlin y utilizando firebase.
 
-![image](https://user-images.githubusercontent.com/91387558/200191804-ff18b5dc-0667-4622-ba8e-db74298fd507.png)
+<center>![image](https://user-images.githubusercontent.com/91387558/200191804-ff18b5dc-0667-4622-ba8e-db74298fd507.png)</center>
 
 
 Figma:
