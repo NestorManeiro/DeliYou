@@ -1,5 +1,6 @@
 package pmn.dev.deliyou
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -21,6 +22,9 @@ class RegisterActivity : AppCompatActivity() {
                     ,editTextPass.text.toString()).addOnCompleteListener{
                     if(it.isSuccessful){
                         Toast.makeText(this,"Registrado con exito",Toast.LENGTH_SHORT).show()
+                        val nextpage = Intent( this, LoginActivity::class.java);
+                        startActivity(nextpage);
+                        finish();
                     } else {
                         Toast.makeText(this,"E-mail ya registrado o error en el registro",Toast.LENGTH_SHORT).show()
                     }

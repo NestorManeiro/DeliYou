@@ -1,5 +1,6 @@
 package pmn.dev.deliyou
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -16,11 +17,13 @@ class LoginActivity : AppCompatActivity() {
             if(editTextPass.text.isNullOrBlank() || editTextMail.text.isNullOrBlank()){
                 Toast.makeText(this,"Porfavor rellena los datos necesarios",Toast.LENGTH_SHORT).show()
             } else {
-
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(editTextMail.text.toString()
                     ,editTextPass.text.toString()).addOnCompleteListener{
                         if(it.isSuccessful){
                             Toast.makeText(this,"Logueado :D",Toast.LENGTH_SHORT).show()
+                            val nextpage = Intent( this, MainPage::class.java);
+                            startActivity(nextpage);
+                            finish();
                         } else {
                             Toast.makeText(this,"Error en el login",Toast.LENGTH_SHORT).show()
                         }
