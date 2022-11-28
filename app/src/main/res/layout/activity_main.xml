@@ -4,13 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="199dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="217dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/send_a_request"
+        android:textColor="#5E008A"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="66dp"
+        android:layout_marginEnd="222dp"
+        android:layout_marginBottom="23dp"
+        android:text="@string/have_a_restaurant"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/appleSign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="67dp"
+        android:layout_marginTop="135dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="261dp"
+        app:srcCompat="@drawable/apple" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_height="310dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="59dp"
+        android:layout_marginBottom="409dp"
         android:orientation="vertical"
         tools:ignore="UseCompoundDrawables">
 
@@ -24,14 +68,15 @@
 
         <TextView
             android:id="@+id/slogan"
-            android:layout_width="300dp"
+            android:layout_width="301dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/aclonica"
-            android:text="@string/slogan"
+            android:fontFamily="sans-serif-black"
+            android:text="@string/deliyou"
             android:textAlignment="center"
-            android:textColor="@android:color/white"
-            android:textSize="30sp" />
+            android:textColor="#5E008A"
+            android:textSize="60sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -40,32 +85,77 @@
         android:layout_alignParentBottom="true"
         android:weightSum="2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"/>
 
+    <ImageView
+        android:id="@+id/googleSign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="37dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginBottom="323dp"
+        app:srcCompat="@drawable/google" />
 
-        <Button
-            android:id="@+id/btnLog"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_weight="1"
-            android:backgroundTint="@color/btnSignUp"
-            android:text="@string/login"
-            android:textColor="@android:color/white"
-            app:cornerRadius="4dp"
-            tools:ignore="TextContrastCheck" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="353dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="13dp"
+        android:text="@string/by_continuing_you_agree_to_our_terms_amp_conditions_and_privacy_policy"
+        android:textAlignment="center" />
 
-        <Button
-            android:id="@+id/btnSignIn"
-            android:text="@string/registrarse"
-            android:textColor="@android:color/white"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:backgroundTint="@color/btnSignActive"
-            app:cornerRadius="4dp" />
+    <TextView
+        android:id="@+id/registertxt"
+        android:layout_width="185dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="106dp"
+        android:layout_marginEnd="119dp"
+        android:layout_marginBottom="142dp"
+        android:text="@string/register"
+        android:textAlignment="center"
+        android:textColor="#5E008A"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="201dp"
+        android:layout_height="29dp"
+        android:layout_above="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginEnd="219dp"
+        android:layout_marginBottom="75dp"
+        android:text="@string/have_an_account_already"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/logintxt"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="220dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="124dp"
+        android:text="@string/log_in"
+        android:textColor="#5E008A"
+        android:textSize="25sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>
