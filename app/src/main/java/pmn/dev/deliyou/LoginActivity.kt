@@ -21,7 +21,7 @@ class LoginActivity : AppCompatActivity() {
                     ,editTextPass.text.toString()).addOnCompleteListener{
                         if(it.isSuccessful){
                             Toast.makeText(this,"Logueado :D",Toast.LENGTH_SHORT).show()
-                            finish();
+                            startActivity(Intent(this, HomeScreen::class.java));
                         } else {
                             Toast.makeText(this,"Error en el login",Toast.LENGTH_SHORT).show()
                         }
