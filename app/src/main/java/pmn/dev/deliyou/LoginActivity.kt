@@ -21,6 +21,7 @@ class LoginActivity : AppCompatActivity() {
                     ,editTextPass.text.toString()).addOnCompleteListener{
                         if(it.isSuccessful){
                             Toast.makeText(this,"Logueado :D",Toast.LENGTH_SHORT).show()
+                            //Si se pone MainPage se verá el menú hamburguesa si se pone HomeScreen se verá la home.
                             val intent = Intent(this@LoginActivity, MainPage::class.java)
                             startActivity(intent)
                             finish();
