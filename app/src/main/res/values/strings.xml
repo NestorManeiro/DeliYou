@@ -25,4 +25,14 @@
     <string name="have_an_account_already">Have an account already?</string>
     <string name="register">Register</string>
     <string name="by_continuing_you_agree_to_our_terms_amp_conditions_and_privacy_policy"><![CDATA[By continuing, you agree to our Terms & Conditions and Privacy Policy]]></string>
+    <string name="title_activity_main_page">MainPage</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

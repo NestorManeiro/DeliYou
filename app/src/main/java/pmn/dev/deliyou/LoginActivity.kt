@@ -21,6 +21,8 @@ class LoginActivity : AppCompatActivity() {
                     ,editTextPass.text.toString()).addOnCompleteListener{
                         if(it.isSuccessful){
                             Toast.makeText(this,"Logueado :D",Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this@LoginActivity, MainPage::class.java)
+                            startActivity(intent)
                             finish();
                         } else {
                             Toast.makeText(this,"Error en el login",Toast.LENGTH_SHORT).show()
