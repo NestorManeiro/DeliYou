@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 enum class ProviderType{
     BASIC,
     GOOGLE,
-    APPLe,
+    APPLE,
 }
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
@@ -81,7 +81,10 @@ class MainActivity : AppCompatActivity() {
                     FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
 
                         if (it.isSuccessful) {
-                            Toast.makeText(this,"Logueado :D", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this,"Logueado", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this, MainPage::class.java)
+                            startActivity(intent)
+                            finish();
                         } else {
                             Toast.makeText(this, "Error en el login", Toast.LENGTH_SHORT).show()
                         }
