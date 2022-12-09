@@ -1,6 +1,7 @@
 package pmn.dev.deliyou
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,7 @@ class HomeScreen : AppCompatActivity() {
     private lateinit var restaurantRecyclerView: RecyclerView
     private lateinit var restaurantArrayList: ArrayList<Restaurant>
     private lateinit var myAdapter: RestaurantAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen)
@@ -27,6 +29,8 @@ class HomeScreen : AppCompatActivity() {
         myAdapter = RestaurantAdapter(restaurantArrayList)
         restaurantRecyclerView.adapter = myAdapter
         getRestaurantData()
+
+
     }
 
     @SuppressLint("NotifyDataSetChanged")
