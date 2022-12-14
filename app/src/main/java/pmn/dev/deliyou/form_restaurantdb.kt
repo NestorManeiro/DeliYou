@@ -1,7 +1,9 @@
 package pmn.dev.deliyou
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.form_restaurant.*
 
@@ -19,11 +21,20 @@ class form_restaurantdb : AppCompatActivity() {
                 "address" to restaurantAddressForm.text.toString(),
                 "imageSrc" to restaurantImageSrcForm.text.toString(),
                 "menu" to restaurantMenuForm.text.toString(),
-                "precio" to restaurantPriceForm.text.toString()),
-            )
+                "precio" to restaurantPriceForm.text.toString())
+            ).addOnCompleteListener {
+
+                if (it.isSuccessful) {
+                    Toast.makeText(this, "Enviado", Toast.LENGTH_SHORT).show()
+                    //Si se pone MainPage se verá el menú hamburguesa si se pone HomeScreen se verá la home.
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish();
+                } else {
+                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
-
-
 
 }
