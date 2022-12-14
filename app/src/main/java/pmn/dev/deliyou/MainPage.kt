@@ -85,8 +85,7 @@ class MainPage : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_item_pedidos -> Toast.makeText(this, "Pedidos", Toast.LENGTH_SHORT).show()
-            R.id.nav_item_two -> Toast.makeText(this, "Item 2", Toast.LENGTH_SHORT).show()
-            R.id.nav_item_three -> Toast.makeText(this, "Item 3", Toast.LENGTH_SHORT).show()
+            R.id.nav_item_favoritos -> Toast.makeText(this, "Favoritos", Toast.LENGTH_SHORT).show()
             R.id.log_out -> {
 
                 val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)

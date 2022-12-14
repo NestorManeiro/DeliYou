@@ -14,12 +14,12 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         registro.setOnClickListener{
-            if(editTextPass.text.isNullOrBlank() || editTextMail.text.isNullOrBlank()){
+            if(restaurantAddressForm.text.isNullOrBlank() || restaurantNameForm.text.isNullOrBlank()){
                 Toast.makeText(this,"Porfavor rellena los datos necesarios",Toast.LENGTH_SHORT).show()
             } else {
 
-                FirebaseAuth.getInstance().createUserWithEmailAndPassword(editTextMail.text.toString()
-                    ,editTextPass.text.toString()).addOnCompleteListener{
+                FirebaseAuth.getInstance().createUserWithEmailAndPassword(restaurantNameForm.text.toString()
+                    ,restaurantAddressForm.text.toString()).addOnCompleteListener{
                     if(it.isSuccessful){
                         Toast.makeText(this,"Registrado con exito",Toast.LENGTH_SHORT).show()
                         val nextpage = Intent( this, LoginActivity::class.java);

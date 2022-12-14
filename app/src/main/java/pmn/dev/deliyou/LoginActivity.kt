@@ -14,11 +14,11 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         login.setOnClickListener{
-            if(editTextPass.text.isNullOrBlank() || editTextMail.text.isNullOrBlank()){
+            if(restaurantAddressForm.text.isNullOrBlank() || restaurantNameForm.text.isNullOrBlank()){
                 Toast.makeText(this,"Porfavor rellena los datos necesarios",Toast.LENGTH_SHORT).show()
             } else {
-                FirebaseAuth.getInstance().signInWithEmailAndPassword(editTextMail.text.toString()
-                    ,editTextPass.text.toString()).addOnCompleteListener{
+                FirebaseAuth.getInstance().signInWithEmailAndPassword(restaurantNameForm.text.toString()
+                    ,restaurantAddressForm.text.toString()).addOnCompleteListener{
                         if(it.isSuccessful){
                             Toast.makeText(this,"Logueado :D",Toast.LENGTH_SHORT).show()
                             //Si se pone MainPage se verá el menú hamburguesa si se pone HomeScreen se verá la home.
