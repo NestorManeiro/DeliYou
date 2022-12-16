@@ -35,4 +35,10 @@
     <string name="navigation_drawer_close">Close</string>
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="direcci_n">Dirección</string>
+    <string name="tipo_de_comida">Tipo de comida</string>
+    <string name="precio">Precio($-$$$)</string>
+    <string name="url_al_logo">Url al logo</string>
+    <string name="enviar_formulario">Enviar Formulario</string>
+    <string name="nombre">Nombre</string>
 </resources>

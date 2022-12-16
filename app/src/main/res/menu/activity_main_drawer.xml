@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group>
-        <item android:id="@+id/nav_item_pedidos"
-            android:icon="@drawable/abc_vector_test"
-            android:title="Pedidos"/>
-        <item android:id="@+id/nav_item_two"
-            android:icon="@drawable/abc_vector_test"
-            android:title="Item2"/>
-        <item android:id="@+id/nav_item_three"
-            android:icon="@drawable/abc_vector_test"
-            android:title="Item3"/>
+        <item
+            android:id="@+id/nav_item_pedidos"
+            android:icon="@android:drawable/ic_menu_search"
+            android:title="Pedidos" />
+        <item
+            android:id="@+id/nav_item_favoritos"
+            android:icon="@android:drawable/btn_star"
+            android:title="Favoritos" />
     </group>
 
-    <item android:title="Title 1">
+    <item android:title="Acciones">
         <menu>
-            <item android:id="@+id/nav_item_six"
-                android:icon="@drawable/abc_vector_test"
-                android:title="Item6"/>
             <item
                 android:id="@+id/log_out"
                 android:color="@color/ic_launcher_background"

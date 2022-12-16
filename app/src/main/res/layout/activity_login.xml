@@ -49,7 +49,7 @@
         tools:ignore="UseCompoundDrawables">
 
         <EditText
-            android:id="@+id/editTextMail"
+            android:id="@+id/restaurantNameForm"
             android:layout_width="255dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
@@ -66,7 +66,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextPass"
+            android:id="@+id/restaurantAddressForm"
             android:layout_width="255dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
@@ -81,7 +81,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextMail"
+            app:layout_constraintTop_toBottomOf="@+id/restaurantNameForm"
             app:layout_constraintVertical_bias="0.07" />
 
         <Button

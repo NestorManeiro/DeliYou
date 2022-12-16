@@ -4,7 +4,7 @@
     android:id="@+id/nav_header"
     android:layout_width="match_parent"
     android:layout_height="160dp"
-    android:background="#162534"
+    android:background="@color/design_default_color_error"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?attr/selectableItemBackgroundBorderless"
