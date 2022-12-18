@@ -2,6 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group>
         <item
+            android:id="@+id/inicio"
+            android:icon="@android:drawable/ic_dialog_info"
+            android:title="Inicio" />
+        <item
             android:id="@+id/nav_item_pedidos"
             android:icon="@android:drawable/ic_menu_search"
             android:title="Pedidos" />
@@ -18,6 +22,12 @@
                 android:color="@color/ic_launcher_background"
                 android:icon="@android:drawable/ic_delete"
                 android:title="Log out"/>
+            <item
+                android:id="@+id/deleteaccount"
+                android:color="@color/ic_launcher_background"
+                android:icon="@android:drawable/ic_menu_delete"
+                android:title="Borrar cuenta" />
+
         </menu>
     </item>
 </menu>

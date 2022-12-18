@@ -1,16 +1,16 @@
 package pmn.dev.deliyou
 
 import android.annotation.SuppressLint
-import android.content.ContentValues.TAG
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,8 +22,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class MainPage : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+
+class pedidos : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var drawer: DrawerLayout
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var restaurantRecyclerView: RecyclerView
@@ -46,7 +47,6 @@ class MainPage : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
         val navigationView: NavigationView = findViewById(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
 
-
         restaurantRecyclerView = findViewById(R.id.restaurantList)
         restaurantRecyclerView.layoutManager = LinearLayoutManager(this)
         restaurantRecyclerView.setHasFixedSize(true)
@@ -54,11 +54,10 @@ class MainPage : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
         restaurantArrayList = arrayListOf<Restaurant>()
         myAdapter = RestaurantAdapter(restaurantArrayList)
         restaurantRecyclerView.adapter = myAdapter
-        getRestaurantData()
+        getListaDePedidos()
     }
-
     @SuppressLint("NotifyDataSetChanged")
-    private fun getRestaurantData(){
+    private fun getListaDePedidos(){
         var lista = arrayListOf<Restaurant>()
         val db = Firebase.firestore
         db.collection("Restaurants")
@@ -79,7 +78,6 @@ class MainPage : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
         }
 
     }
-
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.inicio ->{
@@ -113,11 +111,11 @@ class MainPage : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
                 val currentUser = firebaseAuth.currentUser
                 currentUser!!.delete().addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Log.d(TAG, "OK! Works fine!")
+                        Log.d(ContentValues.TAG, "OK! Works fine!")
                         startActivity(Intent(this, MainActivity::class.java))
                         finish()
                     } else {
-                        Log.w(TAG, "Something is wrong!")
+                        Log.w(ContentValues.TAG, "Something is wrong!")
                     }
                 }
             }
@@ -126,7 +124,6 @@ class MainPage : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
         drawer.closeDrawer(GravityCompat.START)
         return true
     }
-
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         toggle.syncState()
