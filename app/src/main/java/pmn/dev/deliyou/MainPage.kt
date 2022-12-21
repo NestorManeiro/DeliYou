@@ -66,7 +66,7 @@ class MainPage : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
             .addOnSuccessListener { result ->
                 for (document in result){
                     val restaurant = document.toObject(Restaurant::class.java)
-                    Log.i("MyActivity", "${restaurant.name}")
+                    Log.i("MyActivity", "${restaurant.Comidas}")
                     restaurantArrayList.add(restaurant)
                 }
                 myAdapter.notifyDataSetChanged()
