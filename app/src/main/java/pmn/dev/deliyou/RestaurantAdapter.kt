@@ -21,7 +21,13 @@ class RestaurantAdapter(private val RestaurantList : ArrayList<Restaurant>) : Re
         var restId=1
         for(res in RestaurantList){
             Log.i("mika", "${res.name} and ${res.address} and ${res.menu} and ${res.imageSrc} and ${res.precio}'")
-            var resFavItem = RestaurantItem(res.imageSrc.toString(), res.name.toString(), "0", restId.toString())
+
+            val check = favDB!!.check_if_exists(res.name.toString())
+            var statusAux = "0"
+            if (check) {
+                statusAux = "1"
+            }
+            var resFavItem = RestaurantItem(res.imageSrc.toString(), res.name.toString(), statusAux, restId.toString())
             restId++
             restaurantFavList.add(resFavItem)
         }
@@ -39,8 +45,8 @@ class RestaurantAdapter(private val RestaurantList : ArrayList<Restaurant>) : Re
     override fun onBindViewHolder(holder: RestaurantViewHolder, position: Int) {
         val item = RestaurantList[position]
         val favItem = restaurantFavList[position]
-        holder.setOnClickListeners(restaurantFavList, favDB!!);
         val check = favDB!!.check_if_exists(item.name.toString())
+        holder.setOnClickListeners(restaurantFavList, favDB!!, check);
         holder.render(item, check)
     }
 
@@ -76,7 +82,7 @@ class RestaurantViewHolder(view: View): RecyclerView.ViewHolder(view), View.OnCl
             favBtn.setBackgroundResource(R.drawable.ic_favorite_shadow_24dp)
         }
     }
-    fun setOnClickListeners(restaurantFavRests: ArrayList<RestaurantItem>, favDB:FavDB){
+    fun setOnClickListeners(restaurantFavRests: ArrayList<RestaurantItem>, favDB:FavDB, check: Boolean){
         menuButton.setOnClickListener(this)
         favBtn.setOnClickListener(View.OnClickListener {
             val position = adapterPosition
