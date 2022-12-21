@@ -1,16 +1,16 @@
 package pmn.dev.deliyou
 
 import android.annotation.SuppressLint
-import android.content.ContentValues.TAG
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,20 +19,23 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import java.util.ArrayList
 
-class MainPage : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class Favoritos2 : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    private lateinit var recyclerView: RecyclerView
+    private var favDB: FavDB? = null
+    private val favItemList: ArrayList<FavItem>? = ArrayList()
+    private var favAdapter: FavAdapter? = null
 
     private lateinit var drawer: DrawerLayout
     private lateinit var toggle: ActionBarDrawerToggle
-    private lateinit var restaurantRecyclerView: RecyclerView
-    private lateinit var restaurantArrayList: ArrayList<Restaurant>
-    private lateinit var myAdapter: RestaurantAdapter
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main_page2)
+        setContentView(R.layout.activity_favs_list)
+        favDB = FavDB(applicationContext)
 
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar_main)
         setSupportActionBar(toolbar)
@@ -45,40 +48,32 @@ class MainPage : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
 
         val navigationView: NavigationView = findViewById(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
-
-
-        restaurantRecyclerView = findViewById(R.id.restaurantList)
-        restaurantRecyclerView.layoutManager = LinearLayoutManager(this)
-        restaurantRecyclerView.setHasFixedSize(true)
-
-        restaurantArrayList = arrayListOf<Restaurant>()
-        myAdapter = RestaurantAdapter(restaurantArrayList)
-        restaurantRecyclerView.adapter = myAdapter
-        getRestaurantData()
+        
+        recyclerView = findViewById(R.id.restaurantFavList)
+        recyclerView.setHasFixedSize(true)
+        recyclerView.setLayoutManager(LinearLayoutManager(this))
+        loadData()
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    private fun getRestaurantData(){
-        var lista = arrayListOf<Restaurant>()
-        val db = Firebase.firestore
-        db.collection("Restaurants")
-            .get()
-            .addOnSuccessListener { result ->
-                for (document in result){
-                    val restaurant = document.toObject(Restaurant::class.java)
-                    Log.i("MyActivity", "${restaurant.name}")
-                    restaurantArrayList.add(restaurant)
-                }
-                myAdapter.notifyDataSetChanged()
-            }.addOnFailureListener{
-                Log.i("MyActivity", "Algo fue mal")
+    @SuppressLint("Range")
+    private fun loadData() {
+        favItemList!!.clear()
+        val db = favDB!!.readableDatabase
+        val cursor = favDB!!.select_all_favorite_list()
+        try {
+            while (cursor.moveToNext()) {
+                val name = cursor.getString(cursor.getColumnIndex(FavDB.ITEM_NAME))
+                val image = cursor.getString(cursor.getColumnIndex(FavDB.ITEM_IMAGE))
+                val id = cursor.getString(cursor.getColumnIndex(FavDB.KEY_ID))
+                val favItem = FavItem(name, image, id)
+                favItemList!!.add(favItem)
             }
-        for(restaurant in lista){
-
-            Log.i("mika", "$restaurant")
-            Log.i("mika", "${restaurant.name} and ${restaurant.address} and ${restaurant.menu}")
+        } finally {
+            if (cursor != null && cursor.isClosed) cursor.close()
+            db.close()
         }
-
+        favAdapter = FavAdapter(favItemList!!)
+        recyclerView!!.adapter = favAdapter
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -93,13 +88,7 @@ class MainPage : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
                 startActivity(nextpage);
                 finish();
             }
-            R.id.nav_item_favoritos -> {
-                Toast.makeText(this, "Favoritos", Toast.LENGTH_SHORT).show()
-                val nextpage = Intent(this, Favoritos2::class.java);
-                startActivity(nextpage)
-                finish()
-            }
-
+            R.id.nav_item_favoritos -> Toast.makeText(this, "Favoritos", Toast.LENGTH_SHORT).show()
             R.id.log_out -> {
                 val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
                 val googleConf= GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -120,11 +109,11 @@ class MainPage : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
                 val currentUser = firebaseAuth.currentUser
                 currentUser!!.delete().addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Log.d(TAG, "OK! Works fine!")
+                        Log.d(ContentValues.TAG, "OK! Works fine!")
                         startActivity(Intent(this, MainActivity::class.java))
                         finish()
                     } else {
-                        Log.w(TAG, "Something is wrong!")
+                        Log.w(ContentValues.TAG, "Something is wrong!")
                     }
                 }
             }
@@ -133,7 +122,6 @@ class MainPage : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
         drawer.closeDrawer(GravityCompat.START)
         return true
     }
-
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         toggle.syncState()
