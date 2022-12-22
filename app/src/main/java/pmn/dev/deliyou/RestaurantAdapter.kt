@@ -62,6 +62,7 @@ class RestaurantAdapter(private val RestaurantList : ArrayList<Restaurant>) : Re
 class RestaurantViewHolder(view: View): RecyclerView.ViewHolder(view), View.OnClickListener {
     val context = view.context
     val restaurantName = view.findViewById<TextView>(R.id.restaurantName)
+    var restaurantFood = ArrayList<String>()
     val menu = view.findViewById<TextView>(R.id.restaurantMenu)
     val precio = view.findViewById<TextView>(R.id.restaurantPrice)
     val imageSrc = view.findViewById<ImageView>(R.id.restaurantImgSrc)
@@ -72,6 +73,7 @@ class RestaurantViewHolder(view: View): RecyclerView.ViewHolder(view), View.OnCl
         restaurantName.text = restaurant.name
         menu.text = restaurant.menu
         precio.text = restaurant.precio
+        restaurantFood = restaurant.Comidas!!
         val imageUri = restaurant.imageSrc
         Picasso.get().load(imageUri)
             .error(R.mipmap.ic_launcher_round)
@@ -105,117 +107,7 @@ class RestaurantViewHolder(view: View): RecyclerView.ViewHolder(view), View.OnCl
     override fun onClick(p0: View?) {
         val intent = Intent(context, RestaurantDetail::class.java);
         intent.putExtra("name", restaurantName.text)
+        intent.putExtra("food", restaurantFood)
         context.startActivity(intent);
     }
 }
-
-/*package pmn.dev.deliyou
-
-
-import pmn.dev.deliyou.RestaurantItem
-import androidx.recyclerview.widget.RecyclerView
-import pmn.dev.deliyou.FavDB
-import android.view.ViewGroup
-import android.content.SharedPreferences
-import android.view.LayoutInflater
-import pmn.dev.deliyou.R
-import android.widget.TextView
-import android.database.sqlite.SQLiteDatabase
-import android.annotation.SuppressLint
-import android.content.Context
-import android.database.Cursor
-import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import java.util.ArrayList
-
-class RestaurantFavAdapter(
-    private val restaurantItems: ArrayList<RestaurantItem>,
-    private val context: Context
-) : RecyclerView.Adapter<RestaurantFavAdapter.ViewHolder>() {
-    private var favDB: FavDB? = null
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        favDB = FavDB(context)
-        //create table on first
-        val prefs = context.getSharedPreferences("prefs", Context.MODE_PRIVATE)
-        val firstStart = prefs.getBoolean("firstStart", true)
-        if (firstStart) {
-            createTableOnFirstStart()
-        }
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.restaurant_item, parent, false)
-        return ViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val restaurantItem = restaurantItems[position]
-        readCursorData(restaurantItem, holder)
-        holder.imageView.setImageResource(restaurantItem.imageSrc)
-        holder.nameTextView.text = restaurantItem.name
-    }
-
-    override fun getItemCount(): Int {
-        return 0
-    }
-
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var imageView: ImageView
-        var nameTextView: TextView
-        var favBtn: Button
-
-        init {
-            imageView = itemView.findViewById(R.id.favImageView)
-            nameTextView = itemView.findViewById(R.id.favTextView)
-            favBtn = itemView.findViewById(R.id.favBtn)
-
-            //add to fav btn
-            favBtn.setOnClickListener(View.OnClickListener {
-                val position = adapterPosition
-                val restaurantItem = restaurantItems[position]
-                if ((restaurantItem.favStatus == "0")) {
-                    restaurantItem.favStatus = "1"
-                    favDB!!.insertIntoTheDatabase(
-                        restaurantItem.name.toString(), restaurantItem.imageSrc,
-                        restaurantItem.favStatus.toString()
-                    )
-                    favBtn.setBackgroundResource(R.drawable.ic_favorite_red_24dp)
-                } else {
-                    restaurantItem.favStatus = "0"
-                    favDB!!.remove_fav(restaurantItem.name.toString())
-                    favBtn.setBackgroundResource(R.drawable.ic_favorite_shadow_24dp)
-                }
-            })
-        }
-    }
-
-    private fun createTableOnFirstStart() {
-        favDB!!.insertEmpty()
-        val prefs = context.getSharedPreferences("prefs", Context.MODE_PRIVATE)
-        val editor = prefs.edit()
-        editor.putBoolean("firstStart", false)
-        editor.apply()
-    }
-
-    private fun readCursorData(restaurantItem: RestaurantItem, viewHolder: ViewHolder) {
-        val cursor: Cursor = favDB!!.read_all_data(restaurantItem.name.toString())
-        val db = favDB!!.readableDatabase
-        try {
-            while (cursor.moveToNext()) {
-                @SuppressLint("Range") val item_fav_status = cursor.getString(
-                    cursor.getColumnIndex(FavDB.FAVORITE_STATUS)
-                )
-                restaurantItem.favStatus = item_fav_status
-
-                //check fav status
-                if (item_fav_status != null && (item_fav_status == "1")) {
-                    viewHolder.favBtn.setBackgroundResource(R.drawable.ic_favorite_red_24dp)
-                } else if (item_fav_status != null && (item_fav_status == "0")) {
-                    viewHolder.favBtn.setBackgroundResource(R.drawable.ic_favorite_shadow_24dp)
-                }
-            }
-        } finally {
-            if (cursor != null && cursor.isClosed) cursor.close()
-            db.close()
-        }
-    }
-}*/

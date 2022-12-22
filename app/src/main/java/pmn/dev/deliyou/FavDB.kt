@@ -78,7 +78,7 @@ class FavDB(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME, null, 
         public const val ITEM_NAME = "itemName"
         public const val ITEM_IMAGE = "itemImage"
         private const val FAVORITE_STATUS = "fStatus"
-        private const val CREATE_TABLE = ("CREATE TABLE " + TABLE_NAME + "("
+        internal const val CREATE_TABLE = ("CREATE TABLE " + TABLE_NAME + "("
                 + KEY_ID + " TEXT PRIMARY KEY," + ITEM_NAME + " TEXT,"
                 + ITEM_IMAGE + " TEXT," + FAVORITE_STATUS + " TEXT)")
     }
